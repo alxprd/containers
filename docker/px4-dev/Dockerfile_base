@@ -5,36 +5,13 @@
 FROM ubuntu:xenial
 MAINTAINER Daniel Agar <daniel@agar.ca>
 
-RUN apt-get update \
-	&& DEBIAN_FRONTEND=noninteractive apt-get -y --quiet --no-install-recommends install \
-		bzip2 \
-		ca-certificates \
-		ccache \
-		cmake \
-		curl \
-		default-jre-headless \
-		g++ \
-		gcc \
-		git \
-		gosu \
-		lcov \
-		make \
-		ninja-build \
-		python-gencpp \
-		python-genmsg \
-		python-pip \
-		rsync \
-		unzip \
-		wget \
-		xsltproc \
-		zip \
+ADD https://raw.githubusercontent.com/PX4/Firmware/pr-dev_setup/Tools/setup/ubuntu.sh /tmp/ubuntu.sh
+ADD https://raw.githubusercontent.com/PX4/Firmware/pr-dev_setup/Tools/setup/requirements.txt /tmp/requirements.txt
+
+RUN cd /tmp && bash ubuntu.sh \
 	&& apt-get -y autoremove \
 	&& apt-get clean autoclean \
 	&& rm -rf /var/lib/apt/lists/{apt,dpkg,cache,log} /tmp/* /var/tmp/*
-
-RUN pip install --upgrade pip \
-	&& pip install setuptools \
-	&& pip install argparse jinja2 empy numpy requests serial toml
 
 # manual ccache setup
 RUN ln -s /usr/bin/ccache /usr/lib/ccache/cc \
