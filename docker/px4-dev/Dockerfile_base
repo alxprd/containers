@@ -36,10 +36,6 @@ RUN pip install --upgrade pip \
 	&& pip install setuptools \
 	&& pip install argparse jinja2 empy numpy requests serial toml
 
-# manual ccache setup
-RUN ln -s /usr/bin/ccache /usr/lib/ccache/cc \
-	&& ln -s /usr/bin/ccache /usr/lib/ccache/c++
-
 # astyle v2.06
 RUN wget -q https://downloads.sourceforge.net/project/astyle/astyle/astyle%202.06/astyle_2.06_linux.tar.gz -O /tmp/astyle.tar.gz \
 	&& cd /tmp && tar zxf astyle.tar.gz && cd astyle/src \
