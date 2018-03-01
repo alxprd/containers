@@ -12,7 +12,7 @@ RUN apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get -y --quiet --no-install-recommends install \
 		sudo \
 	&& mkdir -p /home/user \
-	&& git clone https://github.com/pixhawk/rpi_toolchain.git /home/user/rpi_toolchain \
+	&& git clone -b update-for-dockerfile https://github.com/alxprd/rpi_toolchain.git /home/user/rpi_toolchain \
 	&& cd /home/user/rpi_toolchain \
 	&& ./install_cross.sh /home/user/rpi_toolchain_install \
 	&& rm -rf /home/user/rpi_toolchain \
