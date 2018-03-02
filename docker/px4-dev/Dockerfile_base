@@ -37,7 +37,7 @@ RUN pip install --upgrade pip \
 	&& pip install argparse jinja2 empy numpy requests serial toml
 
 # astyle v2.06
-RUN wget -q https://downloads.sourceforge.net/project/astyle/astyle/astyle%202.06/astyle_2.06_linux.tar.gz -O /tmp/astyle.tar.gz \
+RUN wget -q https://github.com/alxprd/px4-containers-deps/blob/master/astyle_2.06_linux.tar.gz?raw=true -O /tmp/astyle.tar.gz \
 	&& cd /tmp && tar zxf astyle.tar.gz && cd astyle/src \
 	&& make -f ../build/gcc/Makefile && cp bin/astyle /usr/local/bin \
 	&& rm -rf /tmp/*
