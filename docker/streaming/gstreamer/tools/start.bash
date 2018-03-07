@@ -52,7 +52,7 @@ fi
 string=$(vcgencmd get_camera)
 substring="detected=1"
 if [ "${string#*$substring}" != "$string" ]; then
-	exec raspivid -t 0 -h $HEIGHT -w $WIDTH -fps $FPS -b $BITRATE -o - | gst-launch-1.0 -v fdsrc ! h264parse ! rtph264pay ! udpsink host=$TARGET_HOST port=$TARGET_PORT
+	exec raspivid -n -t 0 -h $HEIGHT -w $WIDTH -fps $FPS -b $BITRATE -o - | gst-launch-1.0 -v fdsrc ! h264parse ! rtph264pay ! udpsink host=$TARGET_HOST port=$TARGET_PORT
 else
 	echo "Info: RPI camera not found"
 fi
